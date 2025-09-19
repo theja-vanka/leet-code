@@ -12,41 +12,28 @@ class Solution {
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
 
-        ListNode* dummy = new ListNode();
-        ListNode* returnDummy = dummy;
+        ListNode* dummyHead = new ListNode();
+        ListNode* dummy = dummyHead;
         int carry = 0;
         int quotient, temp;
 
-        while(l1 && l2){
-            temp = l1->val + l2->val + carry;
-            quotient = temp % 10;
+        while(l1 != nullptr || l2 != nullptr || carry != 0){
+            int v1 = (l1 != nullptr) ? l1->val : 0;
+            int v2 = (l2 != nullptr) ? l2->val : 0;
+
+            temp = v1 + v2 + carry;
+            dummy->next = new ListNode(temp % 10);
             carry = int(temp / 10);
-            dummy->next = new ListNode(quotient);
+
             dummy = dummy->next;
-            l1 = l1->next;
-            l2 = l2->next;
+            if(l1 != nullptr){
+                l1 = l1->next;
+            }
+            if(l2 != nullptr){
+                l2 = l2->next;
+            } 
         }
 
-        while(l1){
-            temp = l1->val + carry;
-            quotient = temp % 10;
-            carry = int(temp / 10);
-            dummy->next = new ListNode(quotient);
-            dummy = dummy->next;
-            l1 = l1->next;
-        }
-        while(l2){
-            temp = l2->val + carry;
-            quotient = temp % 10;
-            carry = int(temp / 10);
-            dummy->next = new ListNode(quotient);
-            dummy = dummy->next;
-            l2 = l2->next;
-        }
-
-        if(carry != 0){
-            dummy->next = new ListNode(carry);
-        }
-        return returnDummy->next;
+        return dummyHead->next;
     }
 };
