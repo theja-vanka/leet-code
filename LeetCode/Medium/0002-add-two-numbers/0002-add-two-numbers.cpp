@@ -33,7 +33,8 @@ public:
                 l2 = l2->next;
             } 
         }
-
-        return dummyHead->next;
+        ListNode* result = dummyHead->next;
+        delete dummyHead;
+        return result;
     }
 };
