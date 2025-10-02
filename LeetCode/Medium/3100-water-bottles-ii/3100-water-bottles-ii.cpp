@@ -2,16 +2,12 @@ class Solution {
 public:
     int maxBottlesDrunk(int numBottles, int numExchange) {
 
-        int emptyBottles = numBottles;
-        int drunkBottles = numBottles;
-
-        while(emptyBottles >= numExchange){
-            drunkBottles += 1;
-            emptyBottles -= numExchange - 1;
-            numExchange += 1;
-        }
-
-        return drunkBottles;
+        int a = 1;
+        int b = 2 * numExchange - 3;
+        int c = -2 * numBottles;
+        double delta = (double)b * b - 4.0 * a * c;
+        int t = (int)ceil((-b + sqrt(delta)) / (2.0 * a));
+        return numBottles + t - 1;
         
     }
 };
