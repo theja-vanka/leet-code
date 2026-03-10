@@ -8,5 +8,5 @@ class Solution:
                 return [hashmap[value], index]
             hashmap[target - value] = index
         
-        return hashmap
+        return [-1, -1]
         
