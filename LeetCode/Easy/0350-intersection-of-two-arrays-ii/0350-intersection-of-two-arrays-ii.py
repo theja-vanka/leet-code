@@ -1,12 +1,6 @@
 class Solution:
     def intersect(self, nums1: List[int], nums2: List[int]) -> List[int]:
         
-        l1: int = len(nums1)
-        l2: int = len(nums2)
-
-        if l1 < l2:
-            nums1, nums2 = nums2, nums1
-        
         hashmap: dict = {}
         result: list = []
 
