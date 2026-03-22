@@ -1,8 +1,8 @@
 class Solution:
     def maxBottlesDrunk(self, numBottles: int, numExchange: int) -> int:
 
-        drunk_bottles = numBottles
-        empty_bottles = numBottles
+        drunk_bottles: int = numBottles
+        empty_bottles: int = numBottles
 
         while empty_bottles >= numExchange:
             drunk_bottles += 1
@@ -10,15 +10,5 @@ class Solution:
             numExchange += 1
         
         return drunk_bottles
-
-
-
-        
-
-        
-
-
-
-            
 
         
