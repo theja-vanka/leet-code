@@ -9,10 +9,11 @@ class Solution:
                 min_cost = price
             else:
                 profit = price - min_cost
-                if profit > max_profit:
-                    max_profit = profit
+                max_profit = max(max_profit, profit)
         
         return max_profit
+
+
 
         
 
