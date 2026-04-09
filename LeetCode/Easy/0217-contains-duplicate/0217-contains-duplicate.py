@@ -3,12 +3,10 @@ class Solution:
 
         hashmap: dict = {}
 
-        for index, num in enumerate(nums):
+        for num in nums:
             if num not in hashmap:
-                hashmap[num] = [index]
+                hashmap[num] = num
             else:
                 return True
-
         return False
-        
         
