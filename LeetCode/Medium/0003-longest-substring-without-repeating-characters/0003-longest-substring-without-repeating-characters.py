@@ -7,11 +7,9 @@ class Solution:
         max_len = 0
 
         while right < len(s):
-            if s[right] not in hashmap:
-                hashmap[s[right]] = right
-            else:
+            if s[right] in hashmap:
                 left = max(left, hashmap[s[right]] + 1) 
-                hashmap[s[right]] = right
+            hashmap[s[right]] = right
             max_len = max(max_len, right - left + 1)
             right += 1
         return max_len
