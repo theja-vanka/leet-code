@@ -1,23 +1,18 @@
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
 
-        left: int = 0
-        right: int = 0
-        max_len: int = 0
-        char_map: dict = {}
+        hashmap: dict = {}
+        left = 0
+        right = 0
+        max_len = 0
 
         while right < len(s):
-            if s[right] not in char_map:
-                char_map[s[right]] = right
+            if s[right] not in hashmap:
+                hashmap[s[right]] = right
             else:
-                left = max(left, char_map[s[right]] + 1)
-                char_map[s[right]] = right
+                left = max(left, hashmap[s[right]] + 1) 
+                hashmap[s[right]] = right
             max_len = max(max_len, right - left + 1)
             right += 1
-        
         return max_len
-
-
-        
-
         
