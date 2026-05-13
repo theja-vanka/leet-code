@@ -5,7 +5,7 @@ class Solution:
         left, right = 0, len(nums) - 1
 
         while left <= right:
-            if nums[left] < nums[right]:
+            if nums[left] <= nums[right]:
                 result = min(result, nums[left])
                 break
             
