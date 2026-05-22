@@ -1,11 +1,12 @@
 class Solution:
     def rob(self, nums: List[int]) -> int:
+        non_adj = 0
+        adj = nums[0]
 
-        rob1, rob2 = 0, 0
-
-        for n in nums:
-            temp = max(n + rob1, rob2)
-            rob1 = rob2
-            rob2 = temp
-        return rob2
+        for i in range(1, len(nums)):
+            curr = max(nums[i]+ non_adj, adj)
+            non_adj = adj
+            adj = curr
+        
+        return adj
         
