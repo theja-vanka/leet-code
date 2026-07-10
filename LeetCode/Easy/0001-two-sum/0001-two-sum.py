@@ -3,10 +3,9 @@ class Solution:
 
         hashmap: dict = {}
 
-        for index, value in enumerate(nums):
-            if value in hashmap:
-                return [hashmap[value], index]
-            hashmap[target - value] = index
-        
-        return [-1, -1]
+        for index, num in enumerate(nums):
+            if num not in hashmap:
+                hashmap[target-num] = index
+            else:
+                return [hashmap[num], index]
         
