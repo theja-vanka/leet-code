@@ -4,11 +4,16 @@ class Solution:
         hashmap: dict = {}
 
         for s in strs:
-            s_t = tuple(sorted(s))
-
-            if s_t not in hashmap:
-                hashmap[s_t] = [s]
+            _ = tuple(sorted(s))
+            if _ not in hashmap:
+                hashmap[_] = [s]
             else:
-                hashmap[s_t].append(s)
-
-        return list(hashmap.values())
+                hashmap[_].append(s)
+        
+        result = []
+        for key, value in hashmap.items():
+            _ = [v for v in value]
+            result.append(_)
+        
+        return result
+        
