@@ -4,34 +4,29 @@ class Solution:
         Do not return anything, modify matrix in-place instead.
         """
 
-        row: int = len(matrix)
-        col: int = len(matrix[0])
+        row, col = len(matrix), len(matrix[0])
+        zero_row = any(matrix[0][c] == 0 for c in range(col)) 
+        zero_col = any(matrix[r][0] == 0 for r in range(row)) 
 
-        first_row_zero: int = any(matrix[0][j] == 0 for j in range(col))
-        first_col_zero: int = any(matrix[i][0] == 0 for i in range(row))
-
-        for i in range(1, row):
-            for j in range(1, col):
-                if matrix[i][j] == 0:
-                    matrix[i][0] = 0
-                    matrix[0][j] = 0
+        for r in range(1, row):
+            for c in range(1, col):
+                if matrix[r][c] == 0:
+                    matrix[r][0] = 0
+                    matrix[0][c] = 0
+    
+        for r in range(1, row):
+            for c in range(1, col):
+                if matrix[r][0] == 0 or matrix[0][c] == 0:
+                    matrix[r][c] = 0
         
-        for i in range(1, row):
-            for j in range(1, col):
-                if matrix[i][0] == 0 or matrix[0][j] == 0:
-                    matrix[i][j] = 0
+        if zero_row:
+            for c in range(col):
+                matrix[0][c] = 0
         
-        if first_row_zero:
-            for j in range(col):
-                matrix[0][j] = 0
-        
-        if first_col_zero:
-            for i in range(row):
-                matrix[i][0] = 0
-
+        if zero_col:
+            for r in range(row):
+                matrix[r][0] = 0
         
 
-        
 
-        
         
