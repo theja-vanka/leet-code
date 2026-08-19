@@ -3,13 +3,13 @@ class Solution:
         """
         Do not return anything, modify matrix in-place instead.
         """
-        
-        n: int = len(matrix)
-        
-        for i in range(n):
-            for j in range(i + 1, n):
-                matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
 
-        for i in range(n):
-            matrix[i].reverse()
+        row, col = len(matrix), len(matrix[0])
+
+        matrix.reverse()
+        # now rotate the matrix w.r.t diagonal
+        for r in range(row):
+            for c in range(r):
+                matrix[r][c], matrix[c][r] = matrix[c][r], matrix[r][c]
+
         
