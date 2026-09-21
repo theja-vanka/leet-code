@@ -4,8 +4,7 @@ class Solution:
         hashmap: dict = {}
 
         for index, num in enumerate(nums):
-            if num not in hashmap:
-                hashmap[target-num] = index
-            else:
+            if num in hashmap:
                 return [hashmap[num], index]
+            hashmap[target - num] = index
         
