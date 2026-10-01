@@ -5,22 +5,15 @@ class Solution:
         for _ in s:
             if _ == "(" or _ == "[" or _ == "{":
                 stack.append(_)
-            elif _ == ")" and stack:
-                if stack[-1] == "(":
-                    stack.pop()
-                else:
-                    return False
-            elif _ == "}" and stack:
-                if stack[-1] == "{":
-                    stack.pop()
-                else:
-                    return False
-            elif _ == "]" and stack:
-                if stack[-1] == "[":
-                    stack.pop()
-                else:
-                    return False
             else:
-                return False
-        
+                if not stack:
+                    return False
+                pop = stack.pop()
+                if _ == ")" and pop != "(":
+                    return False
+                elif _ == "}" and pop != "{":
+                    return False
+                elif _ == "]" and pop != "[":
+                    return False
+                
         return True if len(stack) == 0 else False
