@@ -1,30 +1,23 @@
 class Solution:
     def checkValidString(self, s: str) -> bool:
-        open_stack = []
-        star_stack = []
-        
-        # Step 1: Loop through the string with indices
-        for i, char in enumerate(s):
-            # Your code here for handling '(', '*', and ')'
+        min_open = 0
+        max_open = 0
+
+        for char in s:
             if char == "(":
-                open_stack.append(i)
+                min_open += 1
+                max_open += 1
             elif char == "*":
-                star_stack.append(i)
+                min_open -= 1
+                max_open += 1
             else:
-                if open_stack:
-                    open_stack.pop()
-                elif star_stack:
-                    star_stack.pop()
-                else:
-                    return False
+                min_open -= 1
+                max_open -= 1
             
-        # Step 2: Match remaining '(' and '*'
-        # Your code here
-        while open_stack and star_stack:
-            open_bracket = open_stack.pop()    
-            star_bracket = star_stack.pop()
-            if open_bracket > star_bracket:
+            if min_open < 0:
+                min_open = 0
+            if max_open < 0:
                 return False
         
-        # Step 3: Return if it's valid
-        return len(open_stack) == 0
+        return min_open == 0
+        
