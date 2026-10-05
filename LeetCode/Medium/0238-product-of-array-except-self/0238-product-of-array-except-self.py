@@ -4,15 +4,14 @@ class Solution:
 
         prefix = 1
 
-        for index in range(len(nums)):
-            result[index] = prefix
-            prefix *= nums[index]
+        for i in range(len(nums)):
+            result[i] = prefix
+            prefix *= nums[i]
         
         postfix = 1
 
-        for index in range(len(nums)-1,-1,-1):
-            result[index] *= postfix
-            postfix *= nums[index]
+        for i in range(len(nums) - 1, -1, -1):
+            result[i] *= postfix
+            postfix *= nums[i]
         
         return result
-        
