@@ -10,7 +10,7 @@ class Solution:
         pre_ind = 0
         index_map = {v:i for i,v in enumerate(inorder)}
         
-        def dfs(left, right):
+        def helper(left, right):
             nonlocal pre_ind
             if left > right:
                 return None
@@ -21,9 +21,9 @@ class Solution:
             root = TreeNode(rootval)
             mid = index_map[rootval]
 
-            root.left = dfs(left, mid-1)
-            root.right = dfs(mid+1, right)
+            root.left = helper(left, mid-1)
+            root.right = helper(mid+1, right)
         
             return root
 
-        return dfs(0, len(inorder)-1)
+        return helper(0, len(inorder)-1)
