@@ -13,20 +13,21 @@ class Solution:
             visit.add((r, c))
             q.append((r, c))
             while q:
+                directions = [[1, 0], [-1, 0], [0, 1], [0, -1]]
                 row, col = q.popleft()
-                directions = [[1,0], [-1,0], [0,1], [0,-1]]
                 for dr, dc in directions:
                     _r, _c = row + dr, col + dc
-                    if (_r in range(rows) and _c in range(cols) and
-                    grid[_r][_c] == "1" and
-                    (_r, _c) not in visit):
-                        q.append((_r,_c))
-                        visit.add((_r, _c))
+                    if (0 <= _r < rows and
+                        0 <= _c < cols and
+                        grid[_r][_c] == "1" and
+                        (_r, _c) not in visit):
+                            visit.add((_r, _c))
+                            q.append((_r, _c))
 
         for r in range(rows):
             for c in range(cols):
                 if grid[r][c] == "1" and (r, c) not in visit:
-                    bfs(r,c)
+                    bfs(r, c)
                     islands += 1
-
+        
         return islands
