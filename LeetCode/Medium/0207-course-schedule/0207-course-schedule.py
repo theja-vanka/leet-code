@@ -7,7 +7,7 @@ class Solution:
             pre_req[s].append(e)
         
         visit = set()
-        q = deque()
+
         def dfs(crs):
             if crs in visit: return False
 
