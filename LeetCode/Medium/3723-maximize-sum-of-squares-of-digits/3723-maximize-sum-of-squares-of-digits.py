@@ -12,10 +12,3 @@ class Solution:
             s -= digit
         
         return "".join(result)
-            
-        
-
-        
-
-        
-        
