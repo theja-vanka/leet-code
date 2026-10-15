@@ -1,35 +1,33 @@
 class Solution:
-    def compress(self, chars: List[str]) -> int:
-
-        length: int = len(chars)
-        if length == 1:
-            return 1
+    def compress(self, chars: list[str]) -> int:
         
-
+        count = 0
+        pointer = 0
+        i = 0
         current_char = chars[0]
-        write = 1
-        count = 1
 
-        for index in range(1, length, 1):
-            if current_char == chars[index]:
+        while i < len(chars):
+            if current_char == chars[i]:
                 count += 1
             else:
-                current_char = chars[index]
+                chars[pointer] = current_char
+                pointer += 1
                 if count > 1:
-                    for cs in str(count):
-                        chars[write] = cs
-                        write += 1
-                chars[write] = current_char 
-                write += 1
+                    count = str(count)
+                    for c in count:
+                        chars[pointer] = c
+                        pointer += 1
+                current_char = chars[i]
                 count = 1
+            i += 1
         
+        chars[pointer] = current_char
+        pointer += 1
         if count > 1:
-            for cs in str(count):
-                chars[write] = cs
-                write += 1
+            count = str(count)
+            for c in count:
+                chars[pointer] = c
+                pointer += 1
 
-        return write
-        
-
-        
+        return pointer
         
