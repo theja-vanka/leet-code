@@ -3,17 +3,13 @@ class Solution:
 
         hashmap: dict = {}
 
-        for s in strs:
-            _ = tuple(sorted(s))
-            if _ not in hashmap:
-                hashmap[_] = [s]
-            else:
-                hashmap[_].append(s)
+        for string in strs:
+            ss = tuple(sorted(string))
+            if ss not in hashmap:
+                hashmap[ss] = []
+            hashmap[ss].append(string)
         
-        result = []
-        for key, value in hashmap.items():
-            _ = [v for v in value]
-            result.append(_)
-        
-        return result
+        return [value for _, value in hashmap.items()]
+
+
         
