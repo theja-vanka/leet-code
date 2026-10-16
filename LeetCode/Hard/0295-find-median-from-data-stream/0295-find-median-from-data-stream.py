@@ -33,9 +33,6 @@ class MedianFinder:
         
         return ((self.small[0] * -1) + self.large[0]) / 2
 
-        
-
-
 # Your MedianFinder object will be instantiated and called as such:
 # obj = MedianFinder()
 # obj.addNum(num)
