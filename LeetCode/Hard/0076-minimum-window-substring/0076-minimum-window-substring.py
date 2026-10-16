@@ -1,41 +1,33 @@
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
+        if len(s) < len(t):
+            return ""
+        
+        t_map: dict = {}
+        for char in t:
+            t_map[char] = t_map.get(char, 0) + 1
+        
+        have, need = 0, len(t_map)
+        result_indexes, result = [-1, -1], float('inf')
 
-        if t == "": return ""
-
-        hashmap_t: dict = Counter(t)
-        hashmap_s: dict = {}
-
-        have, need = 0, len(hashmap_t)
-
-        res, res_len = [-1, -1], float('inf')
+        s_map: dict = {}
         l = 0
         for r in range(len(s)):
-            c = s[r]
-            hashmap_s[c] = hashmap_s.get(c, 0) + 1
+            char = s[r]
+            s_map[char] = s_map.get(char, 0) + 1
 
-            if c in hashmap_t and hashmap_t[c] == hashmap_s[c]:
+            if char in t_map and s_map[char] == t_map[char]:
                 have += 1
+            
+            while have == need:
+                if (r - l + 1) < result:
+                    result_indexes = [l, r]
+                    result = min(result, r - l + 1)
 
-                while have == need:
-                    if (r - l + 1) < res_len:
-                        res = [l , r]
-                        res_len = (r - l + 1)
-                    hashmap_s[s[l]] -= 1
-                    if s[l] in hashmap_t and hashmap_s[s[l]] < hashmap_t[s[l]]:
-                        have -= 1  
-                    l += 1
-
-        l, r = res 
-
-        return s[l:r+1] if res_len != float('inf') else ""
-
-        
-
-        
-
-        
-
-
-
-        
+                s_map[s[l]] -= 1
+                if s[l] in t_map and s_map[s[l]] < t_map[s[l]]:
+                    have -= 1
+                l += 1
+            
+        l, r = result_indexes
+        return s[l:r+1] if result != float("inf") else ""
