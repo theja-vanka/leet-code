@@ -1,12 +1,12 @@
 class Solution:
     def rob(self, nums: List[int]) -> int:
-        non_adj = 0
-        adj = nums[0]
+        non_adjacent_house = 0
+        adjacent_house = 0
 
-        for i in range(1, len(nums)):
-            curr = max(nums[i]+ non_adj, adj)
-            non_adj = adj
-            adj = curr
+        for n in nums:
+            robbed_money = max(n + non_adjacent_house, adjacent_house)
+            non_adjacent_house = adjacent_house
+            adjacent_house = robbed_money
         
-        return adj
+        return robbed_money
         
